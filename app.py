@@ -493,16 +493,6 @@ def detect_raster_images():
     except Exception as e:
         logger.error(f"Error in detect_raster_images: {str(e)}")
         return jsonify({"error": str(e)}), 500
-    """Manually trigger cleanup of temporary files."""
-    try:
-        task = cleanup_temp_files.delay()
-        return jsonify({
-            'message': 'Cleanup task started',
-            'task_id': task.id
-        })
-    except Exception as e:
-        logger.error(f"Error starting cleanup: {str(e)}")
-        return jsonify({'error': str(e)}), 500
 
 # Register monitoring endpoints if available
 if ENHANCED_FEATURES_AVAILABLE and metrics_collector:

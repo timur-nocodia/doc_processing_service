@@ -84,8 +84,7 @@ services:
         condition: service_healthy
       
   celery-beat:
-    build: .
-    image: doc_processing_service:local
+    image: ghcr.io/timur-nocodia/doc_processing_service:latest
     command: ["/usr/local/bin/celery", "-A", "app.celery", "beat", "--loglevel=info", "--schedule=/tmp/celerybeat-schedule"]
     restart: unless-stopped
     deploy:
